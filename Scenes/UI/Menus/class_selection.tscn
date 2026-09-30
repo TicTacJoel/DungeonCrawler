@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://cv2qsnsmj5tve"]
+
+[ext_resource type="Script" uid="uid://dt38clfed7wqx" path="res://Scenes/UI/Menus/class_selection.gd" id="1_3hujr"]
+
+[node name="ClassSelection" type="Control" unique_id=171477062]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3hujr")
+
+[node name="Panel" type="Panel" parent="." unique_id=98872575]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -215.0
+offset_top = -157.0
+offset_right = 215.0
+offset_bottom = 157.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BGTemp" type="ColorRect" parent="Panel" unique_id=179274191]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7647059)
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=603254021]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=1969988009]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=1984274889]
+layout_mode = 2
+text = "Choose Your Class"
+horizontal_alignment = 1
+
+[node name="ClassGrid" type="GridContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1841538380]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="DruidButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/ClassGrid" unique_id=146619047]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Druid
+Healer"
+
+[node name="HunterButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/ClassGrid" unique_id=1993251088]
+visible = false
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hunter
+Damage Dealer"
+
+[node name="MageButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/ClassGrid" unique_id=643403380]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Mage
+Damage"
+
+[node name="NecromancerButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/ClassGrid" unique_id=585886510]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Necromancer
+Damage Dealer"
+
+[node name="PriestButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/ClassGrid" unique_id=1169438970]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Priest
+Healer"
+
+[node name="RogueButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/ClassGrid" unique_id=1492110720]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rogue
+Damage"
+
+[node name="WarriorButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/ClassGrid" unique_id=2079619581]
+visible = false
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Warrior
+Tank"
+
+[node name="Description" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=1125833706]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Select a class"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=645219200]
+layout_mode = 2
+text = "Confirm Class"

@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bx63hnkuyeyul"]
+
+[ext_resource type="Script" uid="uid://d3o2epxxc3kih" path="res://Scenes/Interactables/door/door.gd" id="1_5v3oh"]
+[ext_resource type="Texture2D" path="res://art/objects/Pillar_02.png" id="2_r1khh"]
+[ext_resource type="Texture2D" path="res://art/objects/Door_01.png" id="3_eo8si"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t3wus"]
+size = Vector2(35, 320)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7mssy"]
+properties/0/path = NodePath(".:is_open")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+
+[node name="Door" type="Node2D" node_paths=PackedStringArray("door_open", "door_closed", "collider")]
+script = ExtResource("1_5v3oh")
+door_open = NodePath("DoorOpen")
+door_closed = NodePath("DoorClosed")
+collider = NodePath("DoorClosed/StaticBody2D/CollisionShape2D")
+
+[node name="DoorClosed" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+scale = Vector2(0.1, 0.2)
+texture = ExtResource("2_r1khh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="DoorClosed"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorClosed/StaticBody2D"]
+position = Vector2(1.63913e-06, 1.52588e-05)
+shape = SubResource("RectangleShape2D_t3wus")
+
+[node name="DoorOpen" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(17, -34)
+scale = Vector2(0.27, 0.27)
+texture = ExtResource("3_eo8si")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_7mssy")
+
+[connection signal="delta_synchronized" from="MultiplayerSynchronizer" to="." method="_on_multiplayer_synchronizer_delta_synchronized"]

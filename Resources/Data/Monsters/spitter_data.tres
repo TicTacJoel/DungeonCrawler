@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="MonsterData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Resources/Data/MonsterData.gd" id="1"]
+[ext_resource type="Resource" path="res://Resources/Spells/Definitions/enemy_arcane_bolt.tres" id="2"]
+[ext_resource type="Script" path="res://Resources/Data/SpellData.gd" id="3"]
+
+[resource]
+script = ExtResource("1")
+monster_name = "Spitter"
+ai_type = 1
+base_health = 18.0
+base_damage = 8.0
+base_movement_speed = 90.0
+base_experience = 3
+health_growth = 1.15
+damage_growth = 1.1
+experience_growth = 1.1
+detection_radius = 260.0
+attack_range = 220.0
+retreat_range = 110.0
+spells = Array[ExtResource("3")]([ExtResource("2")])

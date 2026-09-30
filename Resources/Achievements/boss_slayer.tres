@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AchievementData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Resources/Data/AchievementData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+achievement_id = "boss_slayer"
+title = "Boss Slayer"
+description = "Defeat a dungeon boss."
+condition_type = 1
+threshold = 1
+loot_tier_reward = 3
+narrator_lines = Array[String](["The boss is dead! I did NOT see that coming, and I'm the narrator.", "That's one less nightmare rattling around down here. Loot's on me."])

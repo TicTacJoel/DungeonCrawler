@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="SpellData" format=3 uid="uid://bg8rieecveaqk"]
+
+[ext_resource type="Script" uid="uid://gp5wspn3d6so" path="res://Resources/Data/SpellData.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://dsmwsa3ee8k05" path="res://Scenes/Attacks/projectile.tscn" id="1_p54g4"]
+[ext_resource type="Resource" path="res://Resources/Spells/Targeting/target_mouse.tres" id="2"]
+[ext_resource type="Script" uid="uid://b62bky5auamso" path="res://Scripts/Spells/Delivery/delivery_projectile.gd" id="3"]
+[ext_resource type="Script" uid="uid://dk1pt5ymnksah" path="res://Scripts/Spells/SpellEffect.gd" id="3_bgnc1"]
+[ext_resource type="Script" uid="uid://dn3v7fud5t3om" path="res://Scripts/Spells/Shapes/shape_point.gd" id="4"]
+[ext_resource type="Script" uid="uid://dusippcbrg8vp" path="res://Scripts/Spells/Effects/effect_damage.gd" id="5"]
+
+[sub_resource type="Resource" id="DeliveryProjectile_1"]
+script = ExtResource("3")
+speed = 100.0
+
+[sub_resource type="Resource" id="EffectDamage_1"]
+script = ExtResource("5")
+amount = 20.0
+
+[sub_resource type="Resource" id="ShapePoint_1"]
+script = ExtResource("4")
+
+[resource]
+script = ExtResource("1")
+spell_name = "Frostbolt"
+cooldown = 2.0
+targeting = ExtResource("2")
+delivery = SubResource("DeliveryProjectile_1")
+shape = SubResource("ShapePoint_1")
+effects = Array[ExtResource("3_bgnc1")]([SubResource("EffectDamage_1")])

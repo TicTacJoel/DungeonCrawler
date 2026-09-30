@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://vsy5byr3s0mb"]
+
+[ext_resource type="PackedScene" uid="uid://bylm68166l2" path="res://Scenes/Actors/player/player.tscn" id="1_8553e"]
+[ext_resource type="Texture2D" uid="uid://c3b7v7ujear6f" path="res://Assets/Sprites/characters/druid/Player Druid-Sheet.png" id="2_2je44"]
+
+[node name="Druid" unique_id=952301999 instance=ExtResource("1_8553e")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=1994698689]
+texture = ExtResource("2_2je44")

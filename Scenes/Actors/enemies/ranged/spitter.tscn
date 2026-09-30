@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://Scenes/Actors/enemies/ranged/ranged_caster.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/enemies/goblin_spear/Goblin_Spear_Sheet-Sheet.png" id="2"]
+[ext_resource type="Resource" path="res://Resources/Data/Monsters/spitter_data.tres" id="3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 260.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_enemy"]
+properties/0/path = NodePath(".:sync_position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:health")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath("Sprite2D:flip_h")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+
+[node name="Spitter" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 8
+motion_mode = 1
+script = ExtResource("1")
+monster_data = ExtResource("3")
+level = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, -8)
+modulate = Color(0.65, 0.35, 1, 1)
+texture = ExtResource("2")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_1")
+
+[node name="PlayerDetectArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectArea"]
+shape = SubResource("CircleShape2D_1")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_enemy")
+
+[connection signal="body_entered" from="PlayerDetectArea" to="." method="_on_player_detect_area_body_entered"]
+[connection signal="body_exited" from="PlayerDetectArea" to="." method="_on_player_detect_area_body_exited"]

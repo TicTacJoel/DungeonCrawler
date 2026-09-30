@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://ccjqqfvujfqn3"]
+
+[ext_resource type="Script" uid="uid://cwgvybuouhcbe" path="res://Scenes/UI/Menus/menu/main_menu.gd" id="1_pvi6l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ad2t1"]
+font_size = 48
+font_color = Color(0.6893872, 0.30509803, 0.31593725, 1)
+outline_size = 10
+outline_color = Color(0.5378011, 0, 0.10485873, 1)
+shadow_color = Color(0, 0, 0, 0.917647)
+shadow_offset = Vector2(5, 5)
+
+[node name="Control" type="Control" unique_id=958125458]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pvi6l")
+
+[node name="BackgroundTemp" type="ColorRect" parent="." unique_id=383031225]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12798533, 0.15430236, 0.17408359, 1)
+
+[node name="Title" type="Label" parent="." unique_id=1803928674]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -187.0
+offset_top = 27.0
+offset_right = 187.0
+offset_bottom = 103.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "RAID GAME"
+label_settings = SubResource("LabelSettings_ad2t1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1011971423]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -59.0
+offset_right = 126.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.705882)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=469588999]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -68.0
+offset_right = 94.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SingleplayerBtn" type="Button" parent="ColorRect/VBoxContainer" unique_id=1757079148]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Singleplayer"
+
+[node name="DebugBtn" type="Button" parent="ColorRect/VBoxContainer" unique_id=324419760]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Debug"
+
+[node name="MultiplayerBtn" type="Button" parent="ColorRect/VBoxContainer" unique_id=1704041380]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Multiplayer"
+
+[node name="SettingsBtn" type="Button" parent="ColorRect/VBoxContainer" unique_id=510952115]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+disabled = true
+text = "Settings"
+
+[node name="ExitBtn" type="Button" parent="ColorRect/VBoxContainer" unique_id=626599723]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Exit"
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/SingleplayerBtn" to="." method="_on_singleplayer_btn_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/DebugBtn" to="." method="_on_debug_btn_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/MultiplayerBtn" to="." method="_on_multiplayer_btn_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/ExitBtn" to="." method="_on_exit_btn_pressed"]

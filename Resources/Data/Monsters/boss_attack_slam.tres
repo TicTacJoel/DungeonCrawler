@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BossAttackData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Resources/Data/BossAttackData.gd" id="1"]
+[ext_resource type="Resource" path="res://Resources/Spells/Definitions/boss_ground_slam.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+attack_name = "Ground Slam"
+min_level = 2
+spell = ExtResource("2")
+telegraph_time = 1.0
+cooldown = 5.0
+is_self_centered = true

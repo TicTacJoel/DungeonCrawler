@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b4q7b4wwkwsqs"]
+
+[ext_resource type="Script" uid="uid://dq25swv73l0c1" path="res://Scenes/Objects/light.gd" id="1_o80vl"]
+[ext_resource type="Texture2D" uid="uid://d3vqjwlditmwr" path="res://Assets/Sprites/Light/light.png" id="2_o80vl"]
+
+[node name="Light" type="Node2D" unique_id=1647414484]
+script = ExtResource("1_o80vl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1842269567]
+scale = Vector2(0.5, 0.5)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1031941163]
+energy = 0.6
+shadow_enabled = true
+shadow_item_cull_mask = 15
+texture = ExtResource("2_o80vl")
+texture_scale = 0.7

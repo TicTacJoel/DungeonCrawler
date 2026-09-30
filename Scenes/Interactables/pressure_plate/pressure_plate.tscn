@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cnbswdp7u83li"]
+
+[ext_resource type="Texture2D" path="res://art/objects/Pillar_01.png" id="1_h4qih"]
+[ext_resource type="Script" uid="uid://b1kd31wbc6hji" path="res://Scenes/Interactables/pressure_plate/pressure_plate.gd" id="1_piyq8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4yu4n"]
+size = Vector2(32, 8)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_eqwy6"]
+properties/0/path = NodePath(".:is_down")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+
+[node name="PressurePlate" type="Node2D" node_paths=PackedStringArray("plate_up", "plate_down")]
+z_index = -100
+script = ExtResource("1_piyq8")
+plate_up = NodePath("PlateUp")
+plate_down = NodePath("PlateDown")
+
+[node name="PlateUp" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.2)
+texture = ExtResource("1_h4qih")
+
+[node name="PlateDown" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 3)
+scale = Vector2(0.1, 0.2)
+texture = ExtResource("1_h4qih")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4yu4n")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_eqwy6")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="delta_synchronized" from="MultiplayerSynchronizer" to="." method="_on_multiplayer_synchronizer_delta_synchronized"]

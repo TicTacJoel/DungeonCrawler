@@ -1,0 +1,172 @@
+[gd_scene format=3 uid="uid://bylm68166l2"]
+
+[ext_resource type="Script" uid="uid://djqui0os0rrau" path="res://Scenes/Actors/player/player.gd" id="1_psfsr"]
+[ext_resource type="PackedScene" uid="uid://ch28yoclg38pc" path="res://Scenes/Actors/player/player_camera.tscn" id="2_it0mb"]
+[ext_resource type="Texture2D" uid="uid://c3b7v7ujear6f" path="res://Assets/Sprites/characters/druid/Player Druid-Sheet.png" id="4_qjkh3"]
+[ext_resource type="Texture2D" uid="uid://d3vqjwlditmwr" path="res://Assets/Sprites/Light/light.png" id="6_g6k8r"]
+[ext_resource type="PackedScene" uid="uid://bed1jts5oel8x" path="res://Scenes/Actors/player/player_finder.tscn" id="69_5jht7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8w43k"]
+size = Vector2(6, 12)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qjkh3"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="Animation" id="Animation_qjkh3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_g6k8r"]
+resource_name = "idle"
+length = 1.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_boad6"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [11, 12, 13, 14, 15, 16, 17, 18]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rgyib"]
+_data = {
+&"RESET": SubResource("Animation_qjkh3"),
+&"idle": SubResource("Animation_g6k8r"),
+&"walk": SubResource("Animation_boad6")
+}
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nts03"]
+properties/0/path = NodePath(".:target_position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("AnimatedSprite2D:current_animation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Sprite2D:flip_h")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:current_health")
+properties/3/spawn = true
+properties/3/replication_mode = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g6k8r"]
+radius = 7.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_issrm"]
+size = Vector2(14, 25)
+
+[node name="Player" type="CharacterBody2D" unique_id=2072773945 node_paths=PackedStringArray("player_finder") groups=["player"]]
+z_index = 10
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 19
+motion_mode = 1
+script = ExtResource("1_psfsr")
+player_camera = ExtResource("2_it0mb")
+player_finder = NodePath("PlayerFinder")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2136753666]
+position = Vector2(0, -16)
+texture = ExtResource("4_qjkh3")
+hframes = 11
+vframes = 2
+frame = 1
+
+[node name="InteractionHandler" type="Area2D" parent="Sprite2D" unique_id=891439618]
+position = Vector2(0, 16)
+scale = Vector2(2, 2)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/InteractionHandler" unique_id=1648034240]
+position = Vector2(9, -6)
+shape = SubResource("RectangleShape2D_8w43k")
+debug_color = Color(0, 0.6437123, 0.3006843, 0.41960785)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=717324315]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_qjkh3")
+
+[node name="AnimatedSprite2D" type="AnimationPlayer" parent="." unique_id=2122350373]
+libraries/ = SubResource("AnimationLibrary_rgyib")
+autoplay = &"idle"
+
+[node name="PlayerFinder" parent="." unique_id=629980081 instance=ExtResource("69_5jht7")]
+visible = false
+position = Vector2(0, -26)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=162125788]
+position = Vector2(0, -10)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=862288989]
+replication_config = SubResource("SceneReplicationConfig_nts03")
+
+[node name="HitBoxArea" type="Area2D" parent="." unique_id=963860858]
+collision_layer = 2
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxArea" unique_id=478742300]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_g6k8r")
+debug_color = Color(0.9942693, 0.07238803, 1.540184e-06, 0.41960785)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1964114738]
+color = Color(0.8014307, 0.45650178, 0.24103361, 1)
+energy = 0.5
+shadow_enabled = true
+texture = ExtResource("6_g6k8r")
+texture_scale = 0.6
+
+[node name="SwordArea" type="Area2D" parent="." unique_id=330218715]
+collision_layer = 2
+collision_mask = 8
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordArea" unique_id=1432724478]
+position = Vector2(18, -12.5)
+shape = SubResource("RectangleShape2D_issrm")
+debug_color = Color(0.9783394, 0, 0.40073687, 0.41960785)
+
+[connection signal="area_entered" from="Sprite2D/InteractionHandler" to="." method="_on_interaction_handler_area_entered"]
+[connection signal="area_exited" from="Sprite2D/InteractionHandler" to="." method="_on_interaction_handler_area_exited"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="HitBoxArea" to="." method="_on_hit_box_area_body_entered"]
+[connection signal="body_entered" from="SwordArea" to="." method="_on_sword_area_body_entered"]

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bsaahas8jhje8"]
+
+[ext_resource type="Texture2D" uid="uid://d3vqjwlditmwr" path="res://Assets/Sprites/Light/light.png" id="1_g2u34"]
+[ext_resource type="Texture2D" uid="uid://twdjfcnafpb4" path="res://Assets/Sprites/Light/god_ray_3.png" id="2_yh8r1"]
+
+[node name="GodRay" type="Node2D" unique_id=422432707]
+
+[node name="GodRayLightTop" type="PointLight2D" parent="." unique_id=1008759911]
+position = Vector2(80, 18)
+color = Color(0.8818723, 0.5436815, 0.16202363, 1)
+energy = 1.65
+texture = ExtResource("1_g2u34")
+texture_scale = 0.45
+
+[node name="GodRayLightBottom" type="PointLight2D" parent="." unique_id=2114783726]
+position = Vector2(20, 156)
+color = Color(0.927886, 0.5848965, 0.21076906, 1)
+energy = 1.2
+texture = ExtResource("1_g2u34")
+texture_scale = 0.35
+
+[node name="GodRayPixel" type="PointLight2D" parent="." unique_id=604534116]
+position = Vector2(53, 85.00001)
+scale = Vector2(1.430985, 1.5573685)
+color = Color(0.8101341, 0.39574826, 0.115047134, 0.3019608)
+energy = 1.85
+texture = ExtResource("2_yh8r1")

@@ -1,0 +1,195 @@
+[gd_scene format=3 uid="uid://ykgrsjo8harb"]
+
+[ext_resource type="Script" uid="uid://dy57f84nxkixu" path="res://Scenes/UI/Menus/menu/menu.gd" id="1_0388y"]
+[ext_resource type="PackedScene" path="res://Scenes/World/dungeon_level/dungeon_level.tscn" id="2_ahaj4"]
+[ext_resource type="Texture2D" uid="uid://c5gmlulmkisg8" path="res://Assets/Sprites/Environment/LEGIC-Parallax-BG-Buildings.png" id="3_1r62v"]
+[ext_resource type="Texture2D" uid="uid://c3485xnf1k0y0" path="res://Assets/Sprites/Environment/LEGIC-Parallax-FG-Buildings.png" id="4_xk1pt"]
+[ext_resource type="PackedScene" uid="uid://cv2qsnsmj5tve" path="res://Scenes/UI/Menus/class_selection.tscn" id="5_3cyc0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_m1pvk"]
+font_size = 20
+
+[node name="Menu" type="Node" unique_id=367661835 node_paths=PackedStringArray("ui", "level_container", "ip_line_edit", "status_label", "not_connected_hbox", "host_hbox", "class_selection_ui", "lobby_players_list")]
+script = ExtResource("1_0388y")
+ui = NodePath("UI")
+level_container = NodePath("Level")
+level_scene = ExtResource("2_ahaj4")
+ip_line_edit = NodePath("UI/NotConnectedHBox/IPLineEdit")
+status_label = NodePath("UI/StatusLabel")
+not_connected_hbox = NodePath("UI/NotConnectedHBox")
+host_hbox = NodePath("UI/HostHBox")
+class_selection_ui = NodePath("ClassSelection")
+lobby_players_list = NodePath("UI/ScrollContainer/ColorRect2/PlayerListContainer")
+
+[node name="Level" type="Node" parent="." unique_id=324918868]
+
+[node name="LevelSpawner" type="MultiplayerSpawner" parent="." unique_id=557641534]
+spawn_path = NodePath("../Level")
+spawn_limit = 1
+
+[node name="UI" type="Control" parent="." unique_id=2015123461]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundTrees" type="TextureRect" parent="UI" unique_id=663174010]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_1r62v")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="BackgroundHouses" type="TextureRect" parent="UI/BackgroundTrees" unique_id=692112413]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xk1pt")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="UI" unique_id=861932302]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 21.0
+offset_right = -19.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.490196)
+
+[node name="NotConnectedHBox" type="HBoxContainer" parent="UI" unique_id=333135131]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -252.0
+offset_top = 41.0
+offset_right = 248.0
+offset_bottom = 73.0
+grow_horizontal = 2
+
+[node name="HostButton" type="Button" parent="UI/NotConnectedHBox" unique_id=76033155]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="UI/NotConnectedHBox" unique_id=871517293]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Join"
+
+[node name="IPLineEdit" type="LineEdit" parent="UI/NotConnectedHBox" unique_id=124035401]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "127.0.0.1"
+placeholder_text = "Enter IP Address"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI" unique_id=407135899]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -87.5
+offset_right = 250.0
+offset_bottom = 87.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="UI/ScrollContainer" unique_id=1719229399]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 0.490196)
+
+[node name="PlayerListContainer" type="VBoxContainer" parent="UI/ScrollContainer/ColorRect2" unique_id=571006824]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SelectClassButton" type="Button" parent="UI/ScrollContainer/ColorRect2" unique_id=871619196]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -108.0
+offset_top = -41.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Select Class"
+
+[node name="HostHBox" type="HBoxContainer" parent="UI" unique_id=949090975]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 281.0
+offset_right = 570.0
+offset_bottom = 312.0
+
+[node name="StartButton" type="Button" parent="UI/HostHBox" unique_id=1105024339]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+disabled = true
+text = "Start"
+
+[node name="HostHBox2" type="HBoxContainer" parent="UI" unique_id=981162451]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 281.0
+offset_right = 241.0
+offset_bottom = 312.0
+
+[node name="BackButton" type="Button" parent="UI/HostHBox2" unique_id=1266649753]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Back"
+
+[node name="StatusLabel" type="Label" parent="UI" unique_id=1753783782]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -52.0
+offset_top = 61.0
+offset_right = 52.0
+offset_bottom = 89.0
+grow_horizontal = 2
+label_settings = SubResource("LabelSettings_m1pvk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ClassSelection" parent="." unique_id=171477062 instance=ExtResource("5_3cyc0")]
+visible = false
+
+[connection signal="pressed" from="UI/NotConnectedHBox/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="UI/NotConnectedHBox/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="UI/ScrollContainer/ColorRect2/SelectClassButton" to="." method="_on_select_class_button_pressed"]
+[connection signal="pressed" from="UI/HostHBox/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="UI/HostHBox2/BackButton" to="." method="_on_back_button_pressed"]

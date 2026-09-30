@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="SpellData" format=3 uid="uid://cdcmkudu87jkm"]
+
+[ext_resource type="Script" uid="uid://gp5wspn3d6so" path="res://Resources/Data/SpellData.gd" id="1"]
+[ext_resource type="PackedScene" path="res://Scenes/Attacks/enemy_projectile.tscn" id="2"]
+[ext_resource type="Script" uid="uid://b62bky5auamso" path="res://Scripts/Spells/Delivery/delivery_projectile.gd" id="3"]
+[ext_resource type="Script" uid="uid://dn3v7fud5t3om" path="res://Scripts/Spells/Shapes/shape_point.gd" id="4"]
+[ext_resource type="Script" uid="uid://dusippcbrg8vp" path="res://Scripts/Spells/Effects/effect_damage.gd" id="5"]
+[ext_resource type="Script" uid="uid://dk1pt5ymnksah" path="res://Scripts/Spells/SpellEffect.gd" id="6"]
+
+[sub_resource type="Resource" id="DeliveryProjectile_1"]
+script = ExtResource("3")
+projectile_scene = ExtResource("2")
+speed = 140.0
+
+[sub_resource type="Resource" id="EffectDamage_1"]
+script = ExtResource("5")
+amount = 8.0
+
+[sub_resource type="Resource" id="ShapePoint_1"]
+script = ExtResource("4")
+affects_group = "player"
+
+[resource]
+script = ExtResource("1")
+spell_name = "Arcane Bolt"
+cooldown = 2.0
+cast_range = 220.0
+delivery = SubResource("DeliveryProjectile_1")
+shape = SubResource("ShapePoint_1")
+effects = Array[ExtResource("6")]([SubResource("EffectDamage_1")])

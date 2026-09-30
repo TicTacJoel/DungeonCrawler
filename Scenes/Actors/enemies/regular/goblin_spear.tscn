@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dg7e76bn8w5be"]
+
+[ext_resource type="Script" uid="uid://14mfumvoiyrs" path="res://Scenes/Actors/enemies/regular/enemy.gd" id="1_xtwiq"]
+[ext_resource type="Texture2D" uid="uid://ceevlrw5bbn60" path="res://Assets/Sprites/enemies/goblin_spear/Goblin_Spear_Sheet-Sheet.png" id="2_x3j2o"]
+[ext_resource type="Resource" path="res://Resources/Data/Monsters/goblin_spear_data.tres" id="3_monster"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mpmsa"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xtwiq"]
+radius = 84.00595
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_xtwiq"]
+properties/0/path = NodePath(".:sync_position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:health")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath("Sprite2D:flip_h")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+
+[node name="GoblinSpear" type="CharacterBody2D" unique_id=928791491 groups=["enemy"]]
+collision_layer = 8
+motion_mode = 1
+script = ExtResource("1_xtwiq")
+monster_data = ExtResource("3_monster")
+level = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=348236662]
+position = Vector2(-2, -8)
+texture = ExtResource("2_x3j2o")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=841053812]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_mpmsa")
+
+[node name="PlayerDetectArea" type="Area2D" parent="." unique_id=1191326485]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectArea" unique_id=1242922810]
+shape = SubResource("CircleShape2D_xtwiq")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1281679583]
+replication_config = SubResource("SceneReplicationConfig_xtwiq")
+
+[connection signal="body_entered" from="PlayerDetectArea" to="." method="_on_player_detect_area_body_entered"]
+[connection signal="body_exited" from="PlayerDetectArea" to="." method="_on_player_detect_area_body_exited"]

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MonsterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Resources/Data/MonsterData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+monster_name = "Goblin Spearman"
+ai_type = 0
+base_health = 10.0
+base_damage = 2.0
+base_movement_speed = 100.0
+base_experience = 1
+health_growth = 1.15
+damage_growth = 1.1
+experience_growth = 1.1
+detection_radius = 84.0
+attack_range = 20.0

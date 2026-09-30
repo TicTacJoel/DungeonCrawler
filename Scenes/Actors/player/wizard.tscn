@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ceacki4wgomvt"]
+
+[ext_resource type="PackedScene" uid="uid://bylm68166l2" path="res://Scenes/Actors/player/player.tscn" id="1_3dheo"]
+[ext_resource type="Texture2D" uid="uid://cjqt21owyo5re" path="res://Assets/Sprites/characters/wizard/Player Wizard-Sheet.png" id="2_la7br"]
+
+[node name="Wizard" unique_id=952301999 instance=ExtResource("1_3dheo")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=2136753666]
+texture = ExtResource("2_la7br")

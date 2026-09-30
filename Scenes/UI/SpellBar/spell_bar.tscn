@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bih84tgn1nbxp"]
+
+[ext_resource type="Script" uid="uid://bjru3grr16hqk" path="res://Scenes/UI/SpellBar/spell_bar.gd" id="1_ausbk"]
+[ext_resource type="PackedScene" uid="uid://4eiaa5doliq3" path="res://Scenes/UI/SpellBar/spell_button.tscn" id="2_ri6jw"]
+
+[node name="SpellBar" type="HBoxContainer" unique_id=656412050 groups=["spell_bar"]]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -50.0
+offset_right = 20.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 5
+alignment = 1
+script = ExtResource("1_ausbk")
+spell_button_scene = ExtResource("2_ri6jw")

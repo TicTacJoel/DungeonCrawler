@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AchievementData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Resources/Data/AchievementData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+achievement_id = "first_blood"
+title = "First Blood"
+description = "Kill your first enemy."
+condition_type = 0
+threshold = 1
+loot_tier_reward = 1
+narrator_lines = Array[String](["Oh, look at that. Someone's finally started swinging back.", "One down. The dungeon keeps score, you know."])

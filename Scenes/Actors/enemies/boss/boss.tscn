@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://dkys6hko72rwo"]
+
+[ext_resource type="Script" uid="uid://h2ggk26diali" path="res://Scenes/Actors/enemies/boss/boss.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://ceevlrw5bbn60" path="res://Assets/Sprites/enemies/goblin_spear/Goblin_Spear_Sheet-Sheet.png" id="2"]
+[ext_resource type="Resource" path="res://Resources/Data/Monsters/boss_data.tres" id="3"]
+[ext_resource type="Resource" uid="uid://c5dqe2tdpk1et" path="res://Resources/Data/Monsters/boss_attack_melee.tres" id="4"]
+[ext_resource type="Resource" path="res://Resources/Data/Monsters/boss_attack_slam.tres" id="5"]
+[ext_resource type="Script" uid="uid://d3axhjvis8fdr" path="res://Resources/Data/BossAttackData.gd" id="6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1"]
+radius = 13.0
+height = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 220.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_enemy"]
+properties/0/path = NodePath(".:sync_position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:health")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath("Sprite2D:flip_h")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+
+[node name="Boss" type="CharacterBody2D" unique_id=294912658 groups=["enemy"]]
+collision_layer = 8
+motion_mode = 1
+script = ExtResource("1")
+monster_data = ExtResource("3")
+attacks = Array[ExtResource("6")]([ExtResource("4"), ExtResource("5")])
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1617458762]
+modulate = Color(1, 0.35, 0.35, 1)
+position = Vector2(-4, -16)
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("2")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=502689260]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_1")
+
+[node name="PlayerDetectArea" type="Area2D" parent="." unique_id=1858338429]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectArea" unique_id=1075963317]
+shape = SubResource("CircleShape2D_1")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1424186062]
+visible = false
+offset_left = -40.0
+offset_top = -70.0
+offset_right = 40.0
+offset_bottom = -58.0
+show_percentage = false
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_enemy")
+
+[connection signal="body_entered" from="PlayerDetectArea" to="." method="_on_player_detect_area_body_entered"]
+[connection signal="body_exited" from="PlayerDetectArea" to="." method="_on_player_detect_area_body_exited"]

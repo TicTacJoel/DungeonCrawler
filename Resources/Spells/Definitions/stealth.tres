@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="SpellData" format=3 uid="uid://cu4e7apary2rn"]
+
+[ext_resource type="Script" uid="uid://gp5wspn3d6so" path="res://Resources/Data/SpellData.gd" id="1"]
+[ext_resource type="Resource" uid="uid://b3yumts86c28w" path="res://Resources/Spells/Targeting/target_self.tres" id="2"]
+[ext_resource type="Script" uid="uid://dk1pt5ymnksah" path="res://Scripts/Spells/SpellEffect.gd" id="2_207mp"]
+[ext_resource type="Script" uid="uid://gcjx5dv3jo2l" path="res://Scripts/Spells/Delivery/delivery_instant.gd" id="3"]
+[ext_resource type="Script" uid="uid://dn3v7fud5t3om" path="res://Scripts/Spells/Shapes/shape_point.gd" id="4"]
+
+[sub_resource type="Resource" id="DeliveryInstant_1"]
+script = ExtResource("3")
+
+[sub_resource type="Resource" id="ShapePoint_1"]
+script = ExtResource("4")
+affects_group = "self"
+
+[resource]
+script = ExtResource("1")
+spell_name = "Stealth"
+spell_type = 2
+cooldown = 15.0
+targeting = ExtResource("2")
+delivery = SubResource("DeliveryInstant_1")
+shape = SubResource("ShapePoint_1")

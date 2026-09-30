@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BossAttackData" format=3 uid="uid://c5dqe2tdpk1et"]
+
+[ext_resource type="Script" uid="uid://d3axhjvis8fdr" path="res://Resources/Data/BossAttackData.gd" id="1"]
+[ext_resource type="Resource" uid="uid://biwutranpcynw" path="res://Resources/Spells/Definitions/boss_melee_swipe.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+attack_name = "Melee Swipe"
+spell = ExtResource("2")
+telegraph_time = 0.5

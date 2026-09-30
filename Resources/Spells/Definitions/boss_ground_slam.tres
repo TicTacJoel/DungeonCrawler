@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="SpellData" format=3 uid="uid://1fhj0sv20kpf"]
+
+[ext_resource type="Script" uid="uid://gp5wspn3d6so" path="res://Resources/Data/SpellData.gd" id="1"]
+[ext_resource type="Script" uid="uid://gcjx5dv3jo2l" path="res://Scripts/Spells/Delivery/delivery_instant.gd" id="2"]
+[ext_resource type="Script" uid="uid://bcm2pn066syos" path="res://Scripts/Spells/Shapes/shape_circle.gd" id="3"]
+[ext_resource type="Script" uid="uid://dusippcbrg8vp" path="res://Scripts/Spells/Effects/effect_damage.gd" id="4"]
+[ext_resource type="Script" uid="uid://dvyo0kpf50p80" path="res://Scripts/Spells/Effects/effect_knockback.gd" id="5"]
+[ext_resource type="Script" uid="uid://dk1pt5ymnksah" path="res://Scripts/Spells/SpellEffect.gd" id="6"]
+
+[sub_resource type="Resource" id="DeliveryInstant_1"]
+script = ExtResource("2")
+
+[sub_resource type="Resource" id="EffectDamage_1"]
+script = ExtResource("4")
+amount = 25.0
+
+[sub_resource type="Resource" id="EffectKnockback_1"]
+script = ExtResource("5")
+force = 300.0
+
+[sub_resource type="Resource" id="ShapeCircle_1"]
+script = ExtResource("3")
+radius = 140.0
+affects_group = "player"
+
+[resource]
+script = ExtResource("1")
+spell_name = "Boss Ground Slam"
+cooldown = 5.0
+delivery = SubResource("DeliveryInstant_1")
+shape = SubResource("ShapeCircle_1")
+effects = Array[ExtResource("6")]([SubResource("EffectDamage_1"), SubResource("EffectKnockback_1")])

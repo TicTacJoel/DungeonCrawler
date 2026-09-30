@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="SpellData" format=3 uid="uid://b3ih5vlv13dbu"]
+
+[ext_resource type="Script" uid="uid://gp5wspn3d6so" path="res://Resources/Data/SpellData.gd" id="1"]
+[ext_resource type="Script" uid="uid://dieucibsuj76x" path="res://Scripts/Spells/Targeting/target_facing.gd" id="2"]
+[ext_resource type="Script" uid="uid://dk1pt5ymnksah" path="res://Scripts/Spells/SpellEffect.gd" id="2_ldq4p"]
+[ext_resource type="Script" uid="uid://gcjx5dv3jo2l" path="res://Scripts/Spells/Delivery/delivery_instant.gd" id="3"]
+[ext_resource type="Script" uid="uid://dn3v7fud5t3om" path="res://Scripts/Spells/Shapes/shape_point.gd" id="4"]
+[ext_resource type="Script" uid="uid://cdlyy1qu5tp6q" path="res://Scripts/Spells/Effects/effect_teleport.gd" id="5"]
+
+[sub_resource type="Resource" id="DeliveryInstant_1"]
+script = ExtResource("3")
+
+[sub_resource type="Resource" id="EffectTeleport_1"]
+script = ExtResource("5")
+
+[sub_resource type="Resource" id="ShapePoint_1"]
+script = ExtResource("4")
+affects_group = "self"
+
+[sub_resource type="Resource" id="TargetingFacing_1"]
+script = ExtResource("2")
+
+[resource]
+script = ExtResource("1")
+spell_name = "Blink"
+spell_type = 2
+cooldown = 8.0
+targeting = SubResource("TargetingFacing_1")
+delivery = SubResource("DeliveryInstant_1")
+shape = SubResource("ShapePoint_1")
+effects = Array[ExtResource("2_ldq4p")]([SubResource("EffectTeleport_1")])
